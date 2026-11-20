@@ -189,8 +189,28 @@ img { max-width: 100%; height: auto; display: block; }
   .hero { padding: 72px 0 64px; }
   .cta-row .btn { flex: 0 0 auto; }
 }
-@media (min-width: 1000px) {
-  .hero-grid { grid-template-columns: 1fr 1fr; align-items: center; gap: 48px; }
+/* The hero screenshot runs full width under the copy rather than beside it.
+   Beside it, the image would render at about half the container and the two
+   headline figures come out roughly 8px tall - present but unreadable, which
+   defeats the point of showing the product at all. Full width renders it at
+   about 0.6 scale, where the figures and the coverage bar can be read. */
+.hero-grid { grid-template-columns: 1fr; }
+.hero-shot { width: 100%; }
+
+/* Crop to the top band: the two headline figures, the coverage bar and the
+   14-day chart. Everything below that is detail the product section shows
+   in full, and including it here only shrinks what matters. */
+.shot-hero img {
+  width: 100%;
+  aspect-ratio: 1803 / 755;
+  object-fit: cover;
+  object-position: top center;
+}
+@media (max-width: 719px) {
+  /* On a phone even full width is only ~340px, so a wide crop would be a
+     letterbox strip. Show more of the screen and let it be an impression of
+     the product rather than something to read. */
+  .shot-hero img { aspect-ratio: 1803 / 1035; }
 }
 
 /* ---------- sections ---------- */

@@ -1,6 +1,18 @@
 # Product screenshots
 
-Drop the real captures into `public/assets/shots/` (create it) and point `public/index.html` at them.
+**Six of the eight slots are filled.** The two still open:
+
+- `restore-points.png` - the Cloud backups card needs S3 credentials, which the
+  demo instance deliberately has none of so it cannot touch real customer data.
+- `tablet.png` - the Android companion, scoped out of this round.
+
+Both still render as dashed "Screenshot to come" placeholders on the page.
+
+The six in place were captured from a demonstration database: invented
+super-agents (WESTLANDS HUB, KAREN AGENTS, THIKA ROAD) and invented agents.
+No real customer name, figure or date appears in any of them.
+
+To fill a remaining slot, drop the capture into `public/assets/shots/` and point `public/index.html` at it.
 
 Each slot in the page is currently a dashed placeholder that says
 "Screenshot to come". To fill one, replace its inner `<div class="shot-frame
