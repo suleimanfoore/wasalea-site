@@ -70,9 +70,12 @@ Variables and secrets**:
 | `CONTACT_TO` | Text | the address enquiries should arrive at |
 | `CONTACT_FROM` | Text | e.g. `Wasalea site <site@wasalea.com>` - the domain must be verified in Resend |
 
-Add the variables to **Production** (and Preview if you want the form working
-on preview deployments). Changing a variable needs a redeploy before it takes
-effect.
+All three are set on Production as encrypted secrets. `CONTACT_TO` is
+`info@wasalea.com`, which the zone's Email Routing catch-all forwards to the
+owner's Gmail, so there is no mailbox to maintain. Add the same variables to
+Preview if you want the form working on preview deployments. **Changing a
+variable needs a redeploy before it takes effect** — the running deployment
+keeps the values it was built with.
 
 Until `RESEND_API_KEY` and `CONTACT_TO` are set, the endpoint answers 503 and
 the form tells the visitor to try again later. It never silently swallows a
@@ -84,13 +87,20 @@ account, so it is a copy-and-paste job.
 
 ## Domain
 
-`wasalea.com` is registered at Cloudflare. The apex is the canonical
-hostname; `www.wasalea.com` 301-redirects to it with a redirect rule on the
-zone (**wasalea.com -> Rules -> Redirect Rules**).
+`wasalea.com` is registered at Cloudflare. Both it and `www.wasalea.com` are
+attached to the Pages project under **Workers & Pages -> wasalea-site ->
+Custom domains**, each with a proxied CNAME to `wasalea-site.pages.dev` in
+the zone's DNS. Cloudflare issues and renews the HTTPS certificate.
 
-Both hostnames are attached to the Pages project under
-**Workers & Pages -> wasalea-site -> Custom domains**. Cloudflare issues and
-renews the HTTPS certificate; nothing to do there.
+The apex is meant to be the canonical hostname, but **both hostnames
+currently serve the site**. To make `www` redirect, add a rule under
+**wasalea.com -> Rules -> Redirect Rules**: hostname equals
+`www.wasalea.com`, dynamic redirect to
+`concat("https://wasalea.com", http.request.uri.path)`, status 301,
+preserve query string. Until then the same content answers on two
+hostnames, which splits search ranking between them. The `<link rel=canonical>`
+in `index.html` points at the apex, which limits the damage but is not a
+substitute for the redirect.
 
 ## Release downloads
 
