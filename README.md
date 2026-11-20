@@ -84,7 +84,31 @@ message.
 
 Verifying `wasalea.com` in Resend means adding the DKIM and SPF records it
 gives you to the Cloudflare DNS for the zone. Both live in the same Cloudflare
-account, so it is a copy-and-paste job.
+account, so it is a copy-and-paste job. That is already done.
+
+## How mail to and from @wasalea.com works
+
+Three separate pieces, worth keeping straight when one of them breaks:
+
+**Incoming.** Cloudflare Email Routing on the zone has a catch-all that
+forwards everything `@wasalea.com` to the owner's Gmail. There is no mailbox
+to maintain and no quota to watch. Managed under **wasalea.com -> Email ->
+Email Routing**.
+
+**The contact form.** The Pages Function sends through Resend, from
+`site@wasalea.com` to `info@wasalea.com`, which the catch-all then forwards.
+So a form submission makes one outbound Resend send and one inbound forward.
+
+**Replies.** Gmail is set up with "Send mail as" `info@wasalea.com`, relaying
+through Resend's SMTP (`smtp.resend.com`, port 465, username `resend`,
+password an API key). Replies therefore leave as `info@wasalea.com` rather
+than the personal Gmail address.
+
+Two consequences. The Resend free tier of 3,000 sends a month is **shared**
+between the contact form and every reply. And if the zone's MX records are
+ever changed - moving to Google Workspace or Zoho, say - Email Routing stops
+and the catch-all with it, so `CONTACT_TO` would need pointing at the new
+mailbox.
 
 ## Domain
 
