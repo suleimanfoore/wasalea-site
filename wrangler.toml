@@ -1,0 +1,12 @@
+# Cloudflare Pages project config.
+#
+# Static files live in public/ and are what the world sees.
+# functions/ stays at the repo root; Pages picks it up automatically and
+# serves functions/api/contact.js at /api/contact.
+#
+# No secrets belong in this file. RESEND_API_KEY, CONTACT_TO and
+# CONTACT_FROM are set in the Cloudflare dashboard.
+
+name = "wasalea-site"
+compatibility_date = "2026-11-01"
+pages_build_output_dir = "public"
