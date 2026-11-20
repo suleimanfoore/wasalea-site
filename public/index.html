@@ -3,14 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>M-Pesa Liquidity Manager — Wasalea</title>
-<meta name="description" content="Track every shilling of float and cash you deploy to M-Pesa agents, from morning deployment to evening repayment. Desktop software for Windows and Mac, with a read-only tablet view for the field.">
+<title>Wasalea Technologies | Liquidity Manager for M-PESA Agent Businesses</title>
+<meta name="description" content="Manage mobile money float, agent deployments, collections and outstanding balances with Liquidity Manager by Wasalea. Desktop software for Windows and Mac, with a read-only Android tablet companion.">
 <link rel="canonical" href="https://wasalea.com/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://wasalea.com/">
-<meta property="og:site_name" content="Wasalea">
-<meta property="og:title" content="M-Pesa Liquidity Manager — Wasalea">
-<meta property="og:description" content="Know exactly where your float is. Morning deployments, evening repayments, and what every agent still owes you — in one place.">
+<meta property="og:site_name" content="Wasalea Technologies">
+<meta property="og:title" content="Wasalea Technologies | Liquidity Manager for M-PESA Agent Businesses">
+<meta property="og:description" content="Know exactly where your float is. Track every shilling deployed to your agents, from the morning hand-out to the evening repayment.">
+<meta property="og:locale" content="en_KE">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0b1c16">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
@@ -19,14 +20,26 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "M-Pesa Liquidity Manager",
-  "applicationCategory": "BusinessApplication",
-  "operatingSystem": "Windows, macOS",
-  "softwareVersion": "3.1.0",
-  "url": "https://wasalea.com/",
-  "description": "Desktop software for tracking float and cash deployed to M-Pesa agents, with oldest-first settlement of repayments and per-agent outstanding balances.",
-  "publisher": { "@type": "Organization", "name": "Wasalea", "url": "https://wasalea.com/" }
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://wasalea.com/#organization",
+      "name": "Wasalea Technologies",
+      "url": "https://wasalea.com/",
+      "description": "Wasalea Technologies builds practical software that helps businesses improve operational control, financial visibility and decision-making.",
+      "areaServed": "KE"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "Liquidity Manager",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Windows, macOS, Android",
+      "softwareVersion": "3.1.0",
+      "url": "https://wasalea.com/",
+      "description": "Financial operations software for mobile money dealers, super-agents and M-PESA agent businesses. Records float and cash deployed to agents, settles repayments against the oldest outstanding deployment, and reports outstanding balances by age.",
+      "publisher": { "@id": "https://wasalea.com/#organization" }
+    }
+  ]
 }
 </script>
 </head>
@@ -36,12 +49,15 @@
 
 <header class="site-header">
   <div class="wrap header-inner">
-    <a class="brand" href="/" aria-label="Wasalea home">
+    <a class="brand" href="/" aria-label="Wasalea Technologies home">
       <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
         <rect width="32" height="32" rx="8" fill="currentColor"/>
         <path d="M7 11l3.2 10h2.6L16 13.6 19.2 21h2.6L25 11h-2.9l-1.9 6.7L17.3 11h-2.6l-2.9 6.7L9.9 11H7z" fill="#fff"/>
       </svg>
-      <span class="brand-name">Wasalea</span>
+      <span class="brand-text">
+        <span class="brand-name">Wasalea</span>
+        <span class="brand-sub">Technologies</span>
+      </span>
     </a>
 
     <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav">
@@ -50,58 +66,162 @@
     </button>
 
     <nav class="site-nav" id="site-nav" aria-label="Main">
-      <a href="#how">How it works</a>
+      <a href="#product">Product</a>
       <a href="#features">Features</a>
-      <a href="#tablet">Tablet view</a>
+      <a href="#security">Reliability</a>
       <a href="#download">Download</a>
-      <a class="nav-cta" href="#contact">Get in touch</a>
+      <a href="#about">About</a>
+      <a class="nav-cta" href="#contact" data-enquiry="Product demonstration">Request a demo</a>
     </nav>
   </div>
 </header>
 
 <main id="main">
 
-  <!-- Hero -->
+  <!-- ============ HERO ============ -->
   <section class="hero">
-    <div class="wrap hero-inner">
-      <p class="eyebrow">Wasalea · for M&#8209;Pesa agent businesses</p>
-      <h1>Know exactly where your float is.</h1>
-      <p class="lede">
-        Every shilling of float and cash you deploy to your agents, tracked from the
-        morning hand&#8209;out to the evening repayment — with what each one still owes
-        you visible at a glance.
-      </p>
-      <div class="cta-row">
-        <a class="btn btn-primary" href="#download">Download for Windows</a>
-        <a class="btn btn-ghost" href="#contact">Talk to us</a>
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Wasalea Technologies &nbsp;·&nbsp; Flagship product</p>
+        <p class="product-badge">Liquidity Manager</p>
+        <h1>Know exactly where your float is.</h1>
+        <p class="lede">
+          Every shilling of float and cash you deploy to your agents, tracked from the
+          morning hand&#8209;out to the evening repayment — with what each one still owes
+          you visible at a glance.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#contact" data-enquiry="Product demonstration">Request a demo</a>
+          <a class="btn btn-ghost" href="#download">Download Liquidity Manager</a>
+        </div>
+        <p class="hero-meta">
+          Version 3.1.0 &nbsp;·&nbsp; Windows &amp; macOS &nbsp;·&nbsp;
+          Read&#8209;only Android tablet companion
+        </p>
       </div>
-      <p class="hero-meta">Version 3.1.0 &nbsp;·&nbsp; Windows &amp; macOS &nbsp;·&nbsp; Your data stays on your own machine</p>
+
+      <div class="hero-shot">
+        <figure class="shot shot-lg">
+          <div class="shot-frame shot-pending" role="img" aria-label="Product screenshot to be added: Liquidity Manager desktop dashboard">
+            <span class="shot-pending-kicker">Screenshot to come</span>
+            <span class="shot-pending-name">Desktop dashboard</span>
+          </div>
+        </figure>
+      </div>
     </div>
   </section>
 
-  <!-- Problem -->
+  <!-- ============ PROBLEM / SOLUTION ============ -->
   <section class="section" id="problem">
     <div class="wrap">
       <h2 class="section-title">The float goes out on trust. The record shouldn't.</h2>
+      <p class="prose">Three things go wrong in almost every agent business. Here is what the software does about each.</p>
+
       <div class="grid grid-3">
-        <article class="card">
+        <article class="card card-ps">
           <h3>Money leaves before dawn</h3>
-          <p>Float and cash go out to several agents every morning, often by phone, often in a hurry. By mid&#8209;morning nobody can say precisely how much is out there.</p>
+          <p class="ps-problem">Float and cash go out to several agents every morning, often by phone, often in a hurry. By mid&#8209;morning nobody can say precisely how much is out there.</p>
+          <p class="ps-answer"><span class="ps-label">What the software does</span>
+            Records the float and cash deployed to every agent as it goes out, so the day's exposure is a number you can read rather than one you have to reconstruct.</p>
         </article>
-        <article class="card">
+
+        <article class="card card-ps">
           <h3>Repayments come back in pieces</h3>
-          <p>An agent repays part of yesterday against part of today. Matching those payments to the right deployment by hand is where the errors creep in.</p>
+          <p class="ps-problem">An agent repays part of yesterday against part of today. Matching those payments to the right deployment by hand is where the errors creep in.</p>
+          <p class="ps-answer"><span class="ps-label">What the software does</span>
+            Settles each repayment against the oldest outstanding deployment first, automatically, so partial payments land in the right place and debt ages honestly.</p>
         </article>
-        <article class="card">
+
+        <article class="card card-ps">
           <h3>Spreadsheets quietly drift</h3>
-          <p>One shared workbook, several people, a formula someone dragged too far. The numbers stop agreeing and nobody can prove which version was right.</p>
+          <p class="ps-problem">One shared workbook, several people, a formula someone dragged too far. The numbers stop agreeing and nobody can prove which version was right.</p>
+          <p class="ps-answer"><span class="ps-label">What the software does</span>
+            Keeps deployments, collections, balances and transaction history in a structured record with an activity log — and imports your existing spreadsheet, so you are not starting from nothing.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- How it works -->
-  <section class="section section-alt" id="how">
+  <!-- ============ PRODUCT SCREENSHOTS ============ -->
+  <section class="section section-alt" id="product">
+    <div class="wrap">
+      <p class="eyebrow">The product</p>
+      <h2 class="section-title">Your entire liquidity position, in one place.</h2>
+      <p class="prose">
+        Liquidity Manager runs on the computer that keeps your books. These are its
+        working screens.
+      </p>
+
+      <div class="shot-grid">
+        <figure class="shot">
+          <div class="shot-frame shot-pending" role="img" aria-label="Product screenshot to be added: main desktop dashboard">
+            <span class="shot-pending-kicker">Screenshot to come</span>
+            <span class="shot-pending-name">Main dashboard</span>
+          </div>
+          <figcaption>The day at a glance — what is out, what came back, where you stand.</figcaption>
+        </figure>
+
+        <figure class="shot">
+          <div class="shot-frame shot-pending" role="img" aria-label="Product screenshot to be added: outstanding agent balances">
+            <span class="shot-pending-kicker">Screenshot to come</span>
+            <span class="shot-pending-name">Outstanding balances</span>
+          </div>
+          <figcaption>Who owes what, shaded by how long the money has been out.</figcaption>
+        </figure>
+
+        <figure class="shot">
+          <div class="shot-frame shot-pending" role="img" aria-label="Product screenshot to be added: daily deployments and collections">
+            <span class="shot-pending-kicker">Screenshot to come</span>
+            <span class="shot-pending-name">Deployments &amp; collections</span>
+          </div>
+          <figcaption>The morning hand-out and the evening repayment, entered once each.</figcaption>
+        </figure>
+
+        <figure class="shot">
+          <div class="shot-frame shot-pending" role="img" aria-label="Product screenshot to be added: individual agent account history">
+            <span class="shot-pending-kicker">Screenshot to come</span>
+            <span class="shot-pending-name">Agent statement</span>
+          </div>
+          <figcaption>One agent's full history, exportable to PDF or Excel.</figcaption>
+        </figure>
+
+        <figure class="shot">
+          <div class="shot-frame shot-pending" role="img" aria-label="Product screenshot to be added: executive summary report">
+            <span class="shot-pending-kicker">Screenshot to come</span>
+            <span class="shot-pending-name">Executive summary</span>
+          </div>
+          <figcaption>Deployed, collected and utilisation per agent over any date range.</figcaption>
+        </figure>
+
+        <figure class="shot">
+          <div class="shot-frame shot-pending" role="img" aria-label="Product screenshot to be added: account balances and financial activity">
+            <span class="shot-pending-kicker">Screenshot to come</span>
+            <span class="shot-pending-name">Accounts &amp; transfers</span>
+          </div>
+          <figcaption>Account ledgers, transfers between them, and the activity behind each.</figcaption>
+        </figure>
+
+        <figure class="shot">
+          <div class="shot-frame shot-pending" role="img" aria-label="Product screenshot to be added: backup history and restore points">
+            <span class="shot-pending-kicker">Screenshot to come</span>
+            <span class="shot-pending-name">Restore points</span>
+          </div>
+          <figcaption>Earlier versions of the books, with a preview before anything is put back.</figcaption>
+        </figure>
+
+        <figure class="shot">
+          <div class="shot-frame shot-pending shot-tablet" role="img" aria-label="Product screenshot to be added: Android tablet dashboard">
+            <span class="shot-pending-kicker">Screenshot to come</span>
+            <span class="shot-pending-name">Tablet dashboard</span>
+          </div>
+          <figcaption>The same position on an Android tablet, read-only.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section class="section" id="how">
     <div class="wrap">
       <p class="eyebrow">How it works</p>
       <h2 class="section-title">Two entries a day. That's the whole routine.</h2>
@@ -109,36 +229,36 @@
         <li>
           <span class="step-num" aria-hidden="true">1</span>
           <div>
-            <h3>Morning: record what went out</h3>
-            <p>Enter the float and cash deployed to each agent. That's the day's position set — no reconstructing it from memory later.</p>
+            <h3>Morning — record what went out</h3>
+            <p>Enter the float and cash deployed to each agent. That sets the day's position; there is nothing to reconstruct later.</p>
           </div>
         </li>
         <li>
           <span class="step-num" aria-hidden="true">2</span>
           <div>
-            <h3>Evening: record what came back</h3>
-            <p>Enter each repayment once. It settles automatically against the oldest open deployment first, so partial payments land in the right place without you doing the arithmetic.</p>
+            <h3>Evening — record what came back</h3>
+            <p>Enter each repayment once. It settles against the oldest open deployment first, so partial payments land correctly without you doing the arithmetic.</p>
           </div>
         </li>
         <li>
           <span class="step-num" aria-hidden="true">3</span>
           <div>
-            <h3>Any time: see where you stand</h3>
-            <p>Outstanding balances per agent, colour&#8209;coded by how long the money has been out, plus a summary of what was deployed, collected and utilised over any date range.</p>
+            <h3>Any time — see where you stand</h3>
+            <p>Outstanding balances by age, deployment and collection activity, and per-agent performance over any period you choose.</p>
           </div>
         </li>
       </ol>
     </div>
   </section>
 
-  <!-- Features -->
-  <section class="section" id="features">
+  <!-- ============ FEATURES ============ -->
+  <section class="section section-alt" id="features">
     <div class="wrap">
       <p class="eyebrow">Features</p>
       <h2 class="section-title">Built for how this business actually runs</h2>
-      <div class="grid grid-2">
+      <div class="grid grid-3">
         <article class="card">
-          <h3>Oldest&#8209;first settlement</h3>
+          <h3>Oldest-first settlement</h3>
           <p>Repayments clear against the oldest outstanding deployment automatically, so an agent's debt ages the way it should and nothing sits uncleared by accident.</p>
         </article>
         <article class="card">
@@ -146,115 +266,320 @@
           <p>One screen for who owes what, shaded by how long it has been owed — the overdue positions find you rather than the other way round.</p>
         </article>
         <article class="card">
-          <h3>Per&#8209;agent performance</h3>
-          <p>An executive summary for any date range: deployed, collected and utilisation per agent, so you can see who turns float over and who just holds it.</p>
+          <h3>Per-agent performance</h3>
+          <p>An executive summary for any date range: deployed, collected and utilisation per agent, so you can see who turns float over and who merely holds it.</p>
         </article>
         <article class="card">
-          <h3>A full audit trail</h3>
-          <p>Every deployment and collection is kept with its history. When a figure is questioned months later, there is a record to point at.</p>
+          <h3>Super-agent grouping</h3>
+          <p>Group agents under a super-agent and read outstanding balances and performance for the group as a whole, not just one outlet at a time.</p>
         </article>
         <article class="card">
-          <h3>Safe for a team</h3>
-          <p>Several people can have the books open at once. One person edits at a time and the app shows who that is, so two users can't overwrite each other's work.</p>
+          <h3>Statements and exports</h3>
+          <p>Per-agent statements and executive summaries export to PDF, Excel or CSV — for a lender, an auditor, or an agent who disputes a figure.</p>
         </article>
         <article class="card">
-          <h3>Restore points</h3>
-          <p>Saves build up a history you can look through and roll back to, with a preview of what a given point contains before anything is put back.</p>
+          <h3>Bring your spreadsheet</h3>
+          <p>Import an existing workbook, with a preview of what will be brought in before you commit to it. You do not start from an empty book.</p>
         </article>
+        <article class="card">
+          <h3>Accounts and transfers</h3>
+          <p>Keep separate accounts for the money you work with, move funds between them, and read a ledger for each one.</p>
+        </article>
+        <article class="card">
+          <h3>Audit trail</h3>
+          <p>An activity log of financial actions, and a separate record of deletions — what was removed, when, and by whom.</p>
+        </article>
+        <article class="card">
+          <h3>Team access, one editor</h3>
+          <p>Several people can have the books open. One person edits at a time and the app names who that is, so two users cannot overwrite each other.</p>
+        </article>
+      </div>
+      <p class="fineprint">
+        Simultaneous editing by several people at once is deliberately not supported — one
+        editor at a time is what keeps the figures trustworthy.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ SECURITY / RELIABILITY ============ -->
+  <section class="section" id="security">
+    <div class="wrap">
+      <p class="eyebrow">Reliability</p>
+      <h2 class="section-title">Your business records deserve protection.</h2>
+      <p class="prose">
+        This software holds your financial records, so it is worth being precise about how
+        they are kept — and about what that does and does not guarantee.
+      </p>
+
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>Your data sits on your machine</h3>
+          <p>Liquidity Manager is a desktop application with a local database. The working copy of your books lives on the computer you install it on, not on somebody else's server.</p>
+        </article>
+        <article class="card">
+          <h3>Synchronised across your computers</h3>
+          <p>Authorised machines in your business can work from the same books, with controls that stop two people's changes colliding.</p>
+        </article>
+        <article class="card">
+          <h3>Earlier versions are kept</h3>
+          <p>Saves build a history. You can look through previous versions of the database, see what a given one contains beside the live figures, and put it back.</p>
+        </article>
+        <article class="card">
+          <h3>A restore never deletes</h3>
+          <p>Restoring promotes an earlier version rather than erasing the current one, and the copy being replaced stays in the history — so a restore is itself reversible. The local database is kept beside the new one as a recovery file.</p>
+        </article>
+        <article class="card">
+          <h3>Stale data cannot overwrite newer data</h3>
+          <p>Every upload is conditional on the stored copy still being the one your machine started from. An install holding old data cannot overwrite newer work, and a refused save is written to a recovery file rather than discarded.</p>
+        </article>
+        <article class="card">
+          <h3>Restores are recorded</h3>
+          <p>Restore operations are logged, so a change of that size leaves a trace rather than happening quietly.</p>
+        </article>
+      </div>
+
+      <div class="notice">
+        <h3>What we don't claim</h3>
+        <p>
+          No software is immune to hardware failure, theft, ransomware or human error, and we
+          will not tell you otherwise. Version history reaches back as far as the retention
+          period on your storage, not forever. You should keep your own backups, limit who can
+          use the machine that holds your books, and test that you can actually restore from a
+          backup before you need to. We are happy to walk you through that.
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- Tablet -->
+  <!-- ============ ANDROID TABLET ============ -->
   <section class="section section-dark" id="tablet">
-    <div class="wrap narrow">
+    <div class="wrap">
       <p class="eyebrow">Tablet companion</p>
-      <h2 class="section-title">The day's position, in the field</h2>
-      <p class="prose">
-        An Android tablet app that shows the same books, read&#8209;only. Useful when you
-        are out among the outlets and want to check a balance without carrying a laptop
-        or risking an accidental edit. It reads; the desktop app remains the only place
-        anything is entered.
-      </p>
-      <p><a class="btn btn-light" href="#contact">Ask us about the tablet app</a></p>
+      <h2 class="section-title">Your business position, wherever you are.</h2>
+
+      <div class="split">
+        <div class="split-copy">
+          <p class="prose">
+            An Android tablet app for watching the business when you are not at the desk —
+            out among the outlets, or away from the office entirely. It shows the same books
+            the desktop application keeps.
+          </p>
+          <ul class="ticks">
+            <li>Outstanding balances per client, and the largest of them</li>
+            <li>Money deployed and collected today</li>
+            <li>Account balances and available funds</li>
+            <li>Today's activity as it is entered</li>
+            <li>Synchronisation status, and who currently holds the editor role</li>
+          </ul>
+          <p class="callout">
+            <strong>Read-only, deliberately.</strong> Every financial entry is made in the
+            desktop application. The tablet shows you the position; it cannot change it, so
+            it cannot be the source of a mistake made in a hurry.
+          </p>
+          <p><a class="btn btn-light" href="#contact" data-enquiry="Android tablet companion">Ask about the tablet app</a></p>
+        </div>
+        <div class="split-shot">
+          <figure class="shot">
+            <div class="shot-frame shot-pending shot-tablet" role="img" aria-label="Product screenshot to be added: Android tablet dashboard">
+              <span class="shot-pending-kicker">Screenshot to come</span>
+              <span class="shot-pending-name">Tablet dashboard</span>
+            </div>
+          </figure>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Download -->
+  <!-- ============ DOWNLOAD ============ -->
   <section class="section" id="download">
     <div class="wrap">
       <p class="eyebrow">Download</p>
-      <h2 class="section-title">Get the app</h2>
-      <p class="prose">Current release <strong>3.1.0</strong>. Install it on the machine that keeps your books; your data is stored on that machine.</p>
+      <h2 class="section-title">Get Liquidity Manager</h2>
+      <p class="prose">Current release <strong>3.1.0</strong>. Install it on the machine that will keep your books.</p>
+
       <div class="grid grid-3 downloads">
-        <a class="dl" href="https://mpesa-liquidity-releases.s3.us-east-1.amazonaws.com/LiquidityManager_Setup_latest.exe">
-          <span class="dl-os">Windows</span>
-          <span class="dl-file">Installer · 51 MB</span>
-          <span class="dl-go">Download</span>
-        </a>
-        <a class="dl" href="https://mpesa-liquidity-releases.s3.us-east-1.amazonaws.com/LiquidityManager_Setup_latest.dmg">
-          <span class="dl-os">macOS</span>
-          <span class="dl-file">Disk image · 146 MB</span>
-          <span class="dl-go">Download</span>
-        </a>
-        <a class="dl" href="https://mpesa-liquidity-releases.s3.us-east-1.amazonaws.com/LiquidityManager_UserGuide_latest.pdf">
-          <span class="dl-os">User guide</span>
-          <span class="dl-file">PDF</span>
-          <span class="dl-go">Read it</span>
-        </a>
+        <article class="dl-card">
+          <h3>Windows</h3>
+          <dl class="dl-meta">
+            <div><dt>Version</dt><dd>3.1.0</dd></div>
+            <div><dt>Size</dt><dd>51 MB</dd></div>
+            <div><dt>Requires</dt><dd>Windows 10 or 11, 64-bit</dd></div>
+          </dl>
+          <p class="dl-how">Run the installer and follow the prompts. It adds a desktop shortcut; the application opens in your browser against a server running on your own machine.</p>
+          <a class="btn btn-primary btn-block" href="https://mpesa-liquidity-releases.s3.us-east-1.amazonaws.com/LiquidityManager_Setup_latest.exe">Download installer</a>
+        </article>
+
+        <article class="dl-card">
+          <h3>macOS</h3>
+          <dl class="dl-meta">
+            <div><dt>Version</dt><dd>3.1.0</dd></div>
+            <div><dt>Size</dt><dd>146 MB</dd></div>
+            <div><dt>Requires</dt><dd>macOS, Apple silicon or Intel</dd></div>
+          </dl>
+          <p class="dl-how">Open the disk image and drag the application into Applications. On first launch macOS may ask you to confirm opening it.</p>
+          <a class="btn btn-primary btn-block" href="https://mpesa-liquidity-releases.s3.us-east-1.amazonaws.com/LiquidityManager_Setup_latest.dmg">Download disk image</a>
+        </article>
+
+        <article class="dl-card">
+          <h3>User guide</h3>
+          <dl class="dl-meta">
+            <div><dt>Format</dt><dd>PDF</dd></div>
+            <div><dt>Covers</dt><dd>Daily use, reports, backups</dd></div>
+            <div><dt>Cost</dt><dd>Free to read</dd></div>
+          </dl>
+          <p class="dl-how">The full manual. Worth reading before you commit to anything — it shows how the software is actually used day to day.</p>
+          <a class="btn btn-ghost btn-block" href="https://mpesa-liquidity-releases.s3.us-east-1.amazonaws.com/LiquidityManager_UserGuide_latest.pdf">Read the guide</a>
+        </article>
       </div>
-      <p class="fineprint">Already a customer? The same installer updates an existing install — your data is left where it is.</p>
+
+      <div class="notice notice-quiet">
+        <h3>Upgrading an existing install</h3>
+        <p>
+          The same installer upgrades an existing installation and is not intended to touch
+          your business database. We will not promise that an upgrade can never affect data —
+          no honest vendor can. <strong>Take a backup before you upgrade</strong>, and if an
+          upgrade matters to you, tell us and we will talk it through first.
+        </p>
+      </div>
+
+      <p class="fineprint">
+        The Android tablet companion is not distributed from this page. It is issued directly,
+        with the licence for your business — <a href="#contact" data-enquiry="Android tablet companion">ask us for it</a>.
+      </p>
     </div>
   </section>
 
-  <!-- Pricing -->
+  <!-- ============ PRICING ============ -->
   <section class="section section-alt" id="pricing">
     <div class="wrap narrow center">
       <p class="eyebrow">Pricing</p>
-      <h2 class="section-title">Priced to fit the size of your operation</h2>
+      <h2 class="section-title">A plan that fits your operation.</h2>
       <p class="prose">
-        What you pay depends on how many outlets you run and how many people need the
-        books open. Tell us a little about your business and we'll come back with a
-        straight figure.
+        Whether you manage a small group of agents or a growing network, we'll help you find
+        the right Liquidity Manager package.
       </p>
-      <p><a class="btn btn-primary" href="#contact">Get a price</a></p>
+      <div class="cta-row cta-center">
+        <a class="btn btn-primary" href="#contact" data-enquiry="Personalised quote">Request a personalised quote</a>
+        <a class="btn btn-ghost" href="#contact" data-enquiry="Product demonstration">Book a product demonstration</a>
+      </div>
     </div>
   </section>
 
-  <!-- Contact -->
-  <section class="section" id="contact">
+  <!-- ============ ABOUT ============ -->
+  <section class="section" id="about">
+    <div class="wrap narrow">
+      <p class="eyebrow">About</p>
+      <h2 class="section-title">Wasalea Technologies</h2>
+      <p class="prose">
+        Wasalea Technologies develops practical software designed to help businesses operate
+        with greater visibility, control and confidence.
+      </p>
+      <p class="prose">
+        We build tools that address real operational problems, simplify processes that have
+        grown complicated, and give business owners a clearer view of what is actually
+        happening in their operation.
+      </p>
+      <p class="prose">
+        <strong>Liquidity Manager is our first flagship product</strong>, built for mobile money
+        dealers, super-agents and M&#8209;PESA agent businesses to manage deployments,
+        collections and outstanding balances. Kenya is the market we know best; the problems
+        the software solves are not unique to it.
+      </p>
+      <p class="prose">
+        More products will follow. We would rather say that plainly than pretend there are
+        already several.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="section section-alt" id="contact">
     <div class="wrap narrow">
       <p class="eyebrow">Contact</p>
-      <h2 class="section-title">Get in touch</h2>
-      <p class="prose">Tell us roughly how many agents you deploy to and what you use today. We read every message.</p>
+      <h2 class="section-title">Talk to Wasalea</h2>
+      <p class="prose">
+        Tell us roughly how many agents you deploy to and how you track float today. We read
+        every message, and a person replies.
+      </p>
 
       <form id="contact-form" class="form" novalidate>
         <div class="field">
-          <label for="f-name">Your name</label>
-          <input id="f-name" name="name" type="text" autocomplete="name" required maxlength="100">
+          <label for="f-enquiry">What can we help with?</label>
+          <select id="f-enquiry" name="enquiry">
+            <option>Product demonstration</option>
+            <option>Personalised quote</option>
+            <option>Android tablet companion</option>
+            <option>Technical support</option>
+            <option>Something else</option>
+          </select>
         </div>
-        <div class="field">
-          <label for="f-business">Business name <span class="opt">(optional)</span></label>
-          <input id="f-business" name="business" type="text" autocomplete="organization" maxlength="120">
+
+        <div class="field-row">
+          <div class="field">
+            <label for="f-name">Full name</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" required maxlength="100">
+          </div>
+          <div class="field">
+            <label for="f-business">Business name <span class="opt">(optional)</span></label>
+            <input id="f-business" name="business" type="text" autocomplete="organization" maxlength="120">
+          </div>
         </div>
-        <div class="field">
-          <label for="f-phone">Phone or WhatsApp</label>
-          <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required maxlength="40" placeholder="07xx xxx xxx">
+
+        <div class="field-row">
+          <div class="field">
+            <label for="f-country">Country</label>
+            <input id="f-country" name="country" type="text" autocomplete="country-name" maxlength="60" value="Kenya">
+          </div>
+          <div class="field">
+            <label for="f-phone">Phone or WhatsApp</label>
+            <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required maxlength="40" placeholder="07xx xxx xxx">
+          </div>
         </div>
+
         <div class="field">
           <label for="f-email">Email <span class="opt">(optional)</span></label>
           <input id="f-email" name="email" type="email" autocomplete="email" maxlength="160">
         </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="f-agents">Agents you manage <span class="opt">(roughly)</span></label>
+            <select id="f-agents" name="agents">
+              <option value="">Prefer not to say</option>
+              <option>1 to 5</option>
+              <option>6 to 20</option>
+              <option>21 to 50</option>
+              <option>More than 50</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-method">How you track float now</label>
+            <select id="f-method" name="method">
+              <option value="">Prefer not to say</option>
+              <option>Excel or Google Sheets</option>
+              <option>Paper records</option>
+              <option>Another software package</option>
+              <option>Nothing formal yet</option>
+            </select>
+          </div>
+        </div>
+
         <div class="field">
-          <label for="f-message">How can we help?</label>
+          <label for="f-message">Your message</label>
           <textarea id="f-message" name="message" rows="5" required maxlength="2000"></textarea>
         </div>
+
         <div class="hp" aria-hidden="true">
           <label for="f-website">Website</label>
           <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off">
         </div>
+
         <button class="btn btn-primary btn-block" type="submit" id="f-submit">Send message</button>
         <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        <p class="form-privacy">
+          We use what you send here to answer your enquiry, and for nothing else.
+          See our <a href="/privacy">privacy policy</a>.
+        </p>
       </form>
     </div>
   </section>
@@ -263,21 +588,35 @@
 
 <footer class="site-footer">
   <div class="wrap footer-inner">
-    <div class="footer-brand">
-      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
-        <rect width="32" height="32" rx="8" fill="currentColor"/>
-        <path d="M7 11l3.2 10h2.6L16 13.6 19.2 21h2.6L25 11h-2.9l-1.9 6.7L17.3 11h-2.6l-2.9 6.7L9.9 11H7z" fill="#fff"/>
-      </svg>
-      <span>Wasalea</span>
+    <div class="footer-brand-col">
+      <div class="footer-brand">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <rect width="32" height="32" rx="8" fill="currentColor"/>
+          <path d="M7 11l3.2 10h2.6L16 13.6 19.2 21h2.6L25 11h-2.9l-1.9 6.7L17.3 11h-2.6l-2.9 6.7L9.9 11H7z" fill="#fff"/>
+        </svg>
+        <span>Wasalea Technologies</span>
+      </div>
+      <p class="footer-tag">Practical software for operational control and financial visibility.</p>
     </div>
-    <nav class="footer-nav" aria-label="Footer">
-      <a href="#how">How it works</a>
+
+    <nav class="footer-nav" aria-label="Product">
+      <h2>Product</h2>
+      <a href="#product">Screens</a>
       <a href="#features">Features</a>
+      <a href="#security">Reliability</a>
       <a href="#download">Download</a>
-      <a href="#contact">Contact</a>
     </nav>
+
+    <nav class="footer-nav" aria-label="Company">
+      <h2>Company</h2>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="/privacy">Privacy policy</a>
+      <a href="/terms">Terms of service</a>
+    </nav>
+
     <p class="footer-legal">
-      © <span id="year">2026</span> Wasalea.<br>
+      © <span id="year">2026</span> Wasalea Technologies.<br>
       Wasalea is an independent software business. It is not affiliated with,
       endorsed by, or a partner of Safaricom PLC, and “M&#8209;PESA” is Safaricom's
       trademark, used here only to describe what this software is for.

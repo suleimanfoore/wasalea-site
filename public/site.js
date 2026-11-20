@@ -1,4 +1,4 @@
-/* Wasalea — small bits of behaviour. No framework, no build step. */
+/* Wasalea Technologies — small bits of behaviour. No framework, no build step. */
 (function () {
   'use strict';
 
@@ -16,13 +16,13 @@
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
 
-    // Close after tapping a link, and on Escape.
     nav.addEventListener('click', function (e) {
       if (e.target.tagName === 'A') {
         nav.classList.remove('open');
         toggle.setAttribute('aria-expanded', 'false');
       }
     });
+
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && nav.classList.contains('open')) {
         nav.classList.remove('open');
@@ -32,16 +32,39 @@
     });
   }
 
-  /* ---- contact form ---- */
   var form = document.getElementById('contact-form');
   if (!form) return;
 
   var status = document.getElementById('form-status');
   var submit = document.getElementById('f-submit');
+  var enquiry = document.getElementById('f-enquiry');
+
+  /* ---- CTAs that preselect what the enquiry is about ----
+     Any link carrying data-enquiry sets the dropdown as it scrolls the
+     visitor to the form, so "Request a demo" and "Request a personalised
+     quote" arrive already labelled instead of every message looking alike. */
+  var ctas = document.querySelectorAll('a[data-enquiry]');
+  Array.prototype.forEach.call(ctas, function (link) {
+    link.addEventListener('click', function () {
+      if (!enquiry) return;
+      var wanted = link.getAttribute('data-enquiry');
+      for (var i = 0; i < enquiry.options.length; i++) {
+        if (enquiry.options[i].text === wanted) {
+          enquiry.selectedIndex = i;
+          break;
+        }
+      }
+    });
+  });
 
   function say(message, kind) {
     status.textContent = message;
     status.className = 'form-status' + (kind ? ' ' + kind : '');
+  }
+
+  function val(id) {
+    var el = document.getElementById(id);
+    return el ? el.value.trim() : '';
   }
 
   function firstEmpty() {
@@ -66,12 +89,16 @@
     }
 
     var payload = {
-      name: document.getElementById('f-name').value.trim(),
-      business: document.getElementById('f-business').value.trim(),
-      phone: document.getElementById('f-phone').value.trim(),
-      email: document.getElementById('f-email').value.trim(),
-      message: document.getElementById('f-message').value.trim(),
-      website: document.getElementById('f-website').value
+      enquiry: val('f-enquiry'),
+      name: val('f-name'),
+      business: val('f-business'),
+      country: val('f-country'),
+      phone: val('f-phone'),
+      email: val('f-email'),
+      agents: val('f-agents'),
+      method: val('f-method'),
+      message: val('f-message'),
+      website: val('f-website')
     };
 
     submit.disabled = true;
@@ -91,7 +118,7 @@
       .then(function (r) {
         if (r.ok) {
           form.reset();
-          say('Thank you — your message is with us. We will come back to you shortly.', 'ok');
+          say('Thank you — your message is with us. We read every enquiry and a person will reply.', 'ok');
           submit.textContent = 'Sent';
           return;
         }
