@@ -11,6 +11,7 @@ public/            everything the world sees
   _headers         security headers and cache rules
   assets/          favicon
 functions/
+  _middleware.js   301s www.wasalea.com to the apex, before anything else
   api/contact.js   POST /api/contact - emails the contact form
 wrangler.toml      Pages project config (no secrets in here)
 ```
@@ -92,15 +93,17 @@ attached to the Pages project under **Workers & Pages -> wasalea-site ->
 Custom domains**, each with a proxied CNAME to `wasalea-site.pages.dev` in
 the zone's DNS. Cloudflare issues and renews the HTTPS certificate.
 
-The apex is meant to be the canonical hostname, but **both hostnames
-currently serve the site**. To make `www` redirect, add a rule under
-**wasalea.com -> Rules -> Redirect Rules**: hostname equals
-`www.wasalea.com`, dynamic redirect to
-`concat("https://wasalea.com", http.request.uri.path)`, status 301,
-preserve query string. Until then the same content answers on two
-hostnames, which splits search ranking between them. The `<link rel=canonical>`
-in `index.html` points at the apex, which limits the damage but is not a
-substitute for the redirect.
+The apex is canonical. `www.wasalea.com` 301-redirects to it, keeping the
+path and query string, via `functions/_middleware.js` - not a dashboard
+rule. Both approaches work; the code version is in the repo where it can be
+seen and changed with everything else, at the cost of invoking a Function on
+every request.
+
+To move it to the edge instead, add a rule under **wasalea.com -> Rules ->
+Redirect Rules** (hostname equals `www.wasalea.com`, dynamic redirect to
+`concat("https://wasalea.com", http.request.uri.path)`, 301, preserve query
+string) and **delete `functions/_middleware.js`** - running both is
+redundant.
 
 ## Release downloads
 
