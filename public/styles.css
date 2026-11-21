@@ -1,4 +1,4 @@
-/* Wasalea Technologies — wasalea.com
+/* Wasalea — wasalea.com
    Mobile-first. No build step: edit this file and redeploy. */
 
 :root {
@@ -94,12 +94,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); margin-right: auto; }
 .brand-mark { width: 30px; height: 30px; color: var(--accent); flex: none; }
-.brand-text { display: flex; flex-direction: column; line-height: 1.1; }
 .brand-name { font-weight: 680; font-size: 1.1rem; letter-spacing: -.02em; }
-.brand-sub {
-  font-size: .64rem; font-weight: 600; letter-spacing: .13em;
-  text-transform: uppercase; color: var(--ink-soft);
-}
 
 .nav-toggle {
   display: inline-flex; align-items: center; justify-content: center;

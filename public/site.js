@@ -1,4 +1,4 @@
-/* Wasalea Technologies — small bits of behaviour. No framework, no build step. */
+/* Wasalea — small bits of behaviour. No framework, no build step. */
 (function () {
   'use strict';
 
