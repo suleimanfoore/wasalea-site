@@ -13,6 +13,10 @@ public/            everything the world sees
 functions/
   _middleware.js   301s www.wasalea.com to the apex, before anything else
   api/contact.js   POST /api/contact - emails the contact form
+  get.js           /get - the download sign-in gate
+  auth/            the OAuth round trip for Google, Facebook and LinkedIn
+shared/
+  auth.js          provider definitions, cookie signing, the lead email
 wrangler.toml      Pages project config (no secrets in here)
 ```
 
@@ -109,6 +113,78 @@ between the contact form and every reply. And if the zone's MX records are
 ever changed - moving to Google Workspace or Zoho, say - Email Routing stops
 and the catch-all with it, so `CONTACT_TO` would need pointing at the new
 mailbox.
+
+## The download sign-in gate
+
+The three download buttons point at `/get?p=windows|mac|guide` rather than
+straight at the release bucket. `functions/get.js` asks the visitor to sign in
+with Google, Facebook or LinkedIn, records who they are, and then redirects to
+the file. `shared/auth.js` holds the provider definitions and the signing.
+
+**It is a lead gate, not a lock.** The release files stay on a public bucket
+because the installed desktop app and the tablet both check that bucket for
+updates - making it private would silently break update checking for every
+existing customer. Anyone with a direct URL can still fetch the installer. The
+gate records who comes through the website, which is all it is for. The
+privacy policy says this in as many words; keep it that way.
+
+### Behaviour when unconfigured
+
+With no provider configured, **the gate fails open** and redirects straight to
+the file. A download button that leads nowhere would cost a sale to protect
+files that are public anyway. So deploying this code changes nothing visible
+until credentials exist.
+
+A provider appears only when **both** of its variables are set, so Facebook and
+LinkedIn can be added later with no code change - their buttons appear by
+themselves.
+
+### Variables
+
+Set under **Workers & Pages -> wasalea-site -> Settings -> Variables and
+secrets**, as secrets:
+
+| Name | Needed for |
+|---|---|
+| `SESSION_SECRET` | any provider. Already set. A long random string |
+| `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` | the Google button |
+| `FACEBOOK_CLIENT_ID` / `FACEBOOK_CLIENT_SECRET` | the Facebook button |
+| `LINKEDIN_CLIENT_ID` / `LINKEDIN_CLIENT_SECRET` | the LinkedIn button |
+
+Changing a variable needs a redeploy before it takes effect.
+
+### Creating the OAuth apps
+
+The redirect URI is the same shape for all three:
+
+```
+https://wasalea.com/auth/callback/google
+https://wasalea.com/auth/callback/facebook
+https://wasalea.com/auth/callback/linkedin
+```
+
+- **Google** - console.cloud.google.com, APIs & Services -> Credentials ->
+  OAuth client ID, type "Web application". Add the redirect URI above. Scopes
+  are `openid email profile`, which are basic and need no verification review.
+- **Facebook** - developers.facebook.com, add Facebook Login, set the Valid
+  OAuth Redirect URI. Public use needs App Review and business verification,
+  which takes time; until it passes, only accounts with a role on the app can
+  sign in.
+- **LinkedIn** - linkedin.com/developers, add the "Sign In with LinkedIn using
+  OpenID Connect" product and set the redirect URL. That product needs
+  approval before public use.
+
+### What gets recorded
+
+On each download, an email goes to `CONTACT_TO` with the name, email address,
+which provider was used, which file, the country Cloudflare reports, and the
+time. Repeat downloads are marked as returning. Nothing is stored
+server-side - the email is the whole record - so there is no database of
+prospects to leak. If a searchable list is wanted, add a KV or D1 write beside
+the email in `notifyDownload`.
+
+Lead email reuses the contact form's Resend configuration. If Resend is not
+configured the download still works; only the notification is skipped.
 
 ## Domain
 

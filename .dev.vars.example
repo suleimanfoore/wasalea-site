@@ -1,5 +1,17 @@
-# Copy to .dev.vars for local testing with `npx wrangler pages dev .`
-# .dev.vars is gitignored. Never commit a real key.
+# Copy to .dev.vars for local testing with `npm run dev`.
+# .dev.vars is gitignored. Never commit real keys.
+
+# Contact form
 RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxxxxxx
 CONTACT_TO=you@example.com
 CONTACT_FROM=Wasalea site <site@wasalea.com>
+
+# Download sign-in gate. Without SESSION_SECRET plus at least one provider
+# pair, the gate fails open and hands over the file.
+SESSION_SECRET=any-long-random-string
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+FACEBOOK_CLIENT_ID=
+FACEBOOK_CLIENT_SECRET=
+LINKEDIN_CLIENT_ID=
+LINKEDIN_CLIENT_SECRET=

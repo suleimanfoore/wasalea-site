@@ -426,3 +426,37 @@ img { max-width: 100%; height: auto; display: block; }
   .footer-inner { grid-template-columns: 1.6fr 1fr 1fr; column-gap: 40px; }
   .footer-legal { grid-column: 1 / -1; }
 }
+
+/* ---------- download sign-in page ---------- */
+
+.signin-wrap {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 40px 20px;
+  background:
+    radial-gradient(120% 90% at 50% -20%, var(--accent-wash), transparent 60%),
+    var(--bg);
+}
+.signin {
+  width: 100%; max-width: 460px; text-align: center;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 34px 28px;
+  box-shadow: var(--shadow);
+}
+.signin-brand { justify-content: center; margin-bottom: 26px; }
+.signin h1 { font-size: 1.6rem; margin-bottom: .35em; }
+.signin-file { font-weight: 620; color: var(--ink); margin-bottom: 1.2em; }
+.signin-why { color: var(--ink-soft); font-size: .95rem; text-align: left; }
+.signin-small { font-size: .82rem; color: var(--ink-soft); margin: 14px 0 0; }
+
+.providers { display: grid; gap: 10px; margin: 24px 0 4px; }
+.provider {
+  display: flex; align-items: center; justify-content: center; gap: 11px;
+  padding: 13px 18px; border-radius: 11px;
+  border: 1px solid var(--border); background: var(--card);
+  color: var(--ink); text-decoration: none; font-weight: 600; font-size: .98rem;
+  transition: border-color .15s ease, background-color .15s ease;
+}
+.provider:hover { border-color: var(--accent); background: var(--accent-wash); }
+.provider svg { width: 18px; height: 18px; flex: none; }
