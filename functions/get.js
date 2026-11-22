@@ -9,7 +9,7 @@
  * button that leads nowhere would cost a real sale to save nothing.
  */
 
-import { FILES, PROVIDERS, enabledProviders, readSession, notifyDownload } from '../shared/auth.js';
+import { FILES, PROVIDERS, enabledProviders, readSession, notifyDownload, getRelease } from '../shared/auth.js';
 
 const esc = (s) =>
   String(s).replace(/[&<>"']/g, (c) =>
@@ -25,7 +25,7 @@ const MARKS = {
     '<svg viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path fill="#0A66C2" d="M15.3 0H2.7A2.6 2.6 0 0 0 0 2.6v12.8A2.6 2.6 0 0 0 2.7 18h12.6a2.6 2.6 0 0 0 2.7-2.6V2.6A2.6 2.6 0 0 0 15.3 0zM5.5 15.3H3V6.8h2.6v8.5zM4.2 5.6a1.5 1.5 0 1 1 0-3.1 1.5 1.5 0 0 1 0 3.1zM15.4 15.3h-2.6v-4.1c0-1 0-2.3-1.4-2.3s-1.6 1.1-1.6 2.2v4.2H7.2V6.8h2.5V8a2.7 2.7 0 0 1 2.5-1.4c2.6 0 3.1 1.8 3.1 4v4.7z"/></svg>'
 };
 
-function signInPage(platform, file, providers) {
+function signInPage(platform, file, providers, note) {
   const buttons = providers
     .map(
       (name) =>
@@ -57,7 +57,7 @@ function signInPage(platform, file, providers) {
     </a>
 
     <h1>Before you download</h1>
-    <p class="signin-file">${esc(file.label)} &nbsp;&middot;&nbsp; ${esc(file.note)}</p>
+    <p class="signin-file">${esc(file.label)} &nbsp;&middot;&nbsp; ${esc(note)}</p>
     <p class="signin-why">
       Sign in so we know who is trying the software. We use it to offer help getting
       set up and to tell you about releases worth knowing about &mdash; nothing else,
@@ -109,7 +109,12 @@ export async function onRequestGet({ request, env }) {
     return Response.redirect(file.url, 302);
   }
 
-  return new Response(signInPage(platform, file, providers), {
+  // Size comes from the bucket, so the gate cannot quote a figure the
+  // download section has already moved past.
+  const release = await getRelease();
+  const note = release[platform] ? file.kind + ', ' + release[platform] : file.kind;
+
+  return new Response(signInPage(platform, file, providers, note), {
     headers: {
       'content-type': 'text/html; charset=utf-8',
       'cache-control': 'no-store',

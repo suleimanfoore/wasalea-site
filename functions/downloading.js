@@ -14,7 +14,7 @@
  * still works under a strict script-src and with JavaScript turned off.
  */
 
-import { FILES, enabledProviders, readSession } from '../shared/auth.js';
+import { FILES, enabledProviders, readSession, getRelease } from '../shared/auth.js';
 
 const esc = (s) =>
   String(s).replace(/[&<>"']/g, (c) =>
@@ -44,6 +44,8 @@ export async function onRequestGet({ request, env }) {
     });
   }
 
+  const release = await getRelease();
+  const note = release[platform] ? file.kind + ', ' + release[platform] : file.kind;
   const href = esc(file.url);
 
   const page = `<!doctype html>
@@ -69,7 +71,7 @@ export async function onRequestGet({ request, env }) {
     </a>
 
     <h1>Your download is starting</h1>
-    <p class="signin-file">${esc(file.label)} &nbsp;&middot;&nbsp; ${esc(file.note)}</p>
+    <p class="signin-file">${esc(file.label)} &nbsp;&middot;&nbsp; ${esc(note)}</p>
     <p class="signin-why">
       It should begin on its own in a moment. If nothing happens,
       <a href="${href}">start it manually</a>.

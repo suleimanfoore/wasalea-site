@@ -29,20 +29,88 @@ const RELEASES = 'https://mpesa-liquidity-releases.s3.us-east-1.amazonaws.com';
 export const FILES = {
   windows: {
     label: 'Liquidity Manager for Windows',
-    note: 'Installer, 51 MB',
+    kind: 'Installer',
+    note: 'Installer',
     url: RELEASES + '/LiquidityManager_Setup_latest.exe'
   },
   mac: {
     label: 'Liquidity Manager for macOS',
-    note: 'Disk image, 146 MB',
+    kind: 'Disk image',
+    note: 'Disk image',
     url: RELEASES + '/LiquidityManager_Setup_latest.dmg'
   },
   guide: {
     label: 'The Liquidity Manager user guide',
+    kind: 'PDF',
     note: 'PDF',
     url: RELEASES + '/LiquidityManager_UserGuide_latest.pdf'
   }
 };
+
+/* ---------- what is actually published right now ---------- */
+
+const VERSION_URL = RELEASES + '/latest_version.txt';
+
+// Same binary megabyte the sizes were originally written in, so a release
+// that has not changed produces the same string as before.
+const mb = (bytes) => (bytes ? Math.round(bytes / (1024 * 1024)) + ' MB' : null);
+
+async function sizeOf(url) {
+  try {
+    const res = await fetch(url, { method: 'HEAD' });
+    if (!res.ok) return null;
+    const len = Number(res.headers.get('content-length'));
+    return Number.isFinite(len) && len > 0 ? len : null;
+  } catch {
+    return null;
+  }
+}
+
+async function fetchRelease() {
+  const [versionText, winBytes, macBytes] = await Promise.all([
+    fetch(VERSION_URL).then((r) => (r.ok ? r.text() : null)).catch(() => null),
+    sizeOf(FILES.windows.url),
+    sizeOf(FILES.mac.url)
+  ]);
+
+  // Only accept something that looks like a version. The page falls back to
+  // its own text rather than printing whatever the bucket happened to hold.
+  const trimmed = (versionText || '').trim();
+  const version = /^\d+(\.\d+){1,3}$/.test(trimmed) ? trimmed : null;
+
+  return { version, windows: mb(winBytes), mac: mb(macBytes) };
+}
+
+/**
+ * The published version and installer sizes, read from the releases bucket
+ * so the site cannot drift out of date when a release ships.
+ *
+ * Cached for an hour at the edge. Any failure returns nulls, and every
+ * caller falls back to the text already in the page - stale beats blank,
+ * and a release is not worth a broken download section.
+ */
+export async function getRelease() {
+  const key = 'https://wasalea.com/__release';
+  const cache = typeof caches !== 'undefined' ? caches.default : null;
+
+  if (cache) {
+    const hit = await cache.match(key);
+    if (hit) return hit.json();
+  }
+
+  const data = await fetchRelease();
+
+  if (cache && data.version) {
+    await cache.put(
+      key,
+      new Response(JSON.stringify(data), {
+        headers: { 'content-type': 'application/json', 'cache-control': 'max-age=3600' }
+      })
+    );
+  }
+
+  return data;
+}
 
 export const PROVIDERS = {
   google: {

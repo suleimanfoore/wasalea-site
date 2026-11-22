@@ -32,6 +32,26 @@
     });
   }
 
+  /* ---- keep the version and installer sizes current ----
+     The page ships with the figures hardcoded so crawlers and anyone
+     without JavaScript see something sensible. /api/release reports what
+     is actually published, and anything it knows gets corrected here, so
+     shipping a release updates the site without an edit.
+     Any failure leaves the page exactly as it was. */
+  var stamped = document.querySelectorAll('[data-release]');
+  if (stamped.length) {
+    fetch('/api/release')
+      .then(function (res) { return res.ok ? res.json() : null; })
+      .then(function (release) {
+        if (!release) return;
+        Array.prototype.forEach.call(stamped, function (el) {
+          var value = release[el.getAttribute('data-release')];
+          if (value) el.textContent = value;
+        });
+      })
+      .catch(function () { /* keep what the page already says */ });
+  }
+
   var form = document.getElementById('contact-form');
   if (!form) return;
 

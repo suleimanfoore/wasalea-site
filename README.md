@@ -217,9 +217,24 @@ https://mpesa-liquidity-releases.s3.us-east-1.amazonaws.com/LiquidityManager_Use
 
 Those are stable keys, so `scripts/publish_release.py` in the
 mpesa-liquidity-manager repo updates what they serve and this site needs no
-change - except the version number and file sizes written into
-`public/index.html`, which are hardcoded and want updating when a release
-changes them noticeably.
+change.
+
+**The version number and installer sizes look after themselves.**
+`/api/release` (`functions/api/release.js`) reads `latest_version.txt` and
+HEADs the two installers for their sizes, caching the answer at the edge for
+an hour. `site.js` corrects every element carrying `data-release` on the
+homepage, and the sign-in and download pages render theirs from the same
+source. Publishing a release updates the website with no edit and no deploy.
+
+The figures still sit in the HTML as a fallback, so crawlers and anyone
+without JavaScript see something sensible, and any failure to reach the
+bucket leaves the page showing what it already said. Stale beats blank. When
+those fallbacks drift far from reality it is worth correcting them in
+`public/index.html`, but nothing breaks if they are not.
+
+One deliberate omission: the JSON-LD block no longer carries
+`softwareVersion`. Crawlers read it from the static HTML and never run the
+script, so a value that cannot be kept current is worse than no value.
 
 The Android APK is deliberately not linked: `LiquidityManager_latest.apk` in
 that bucket is not public, so the tablet section points at the contact form
