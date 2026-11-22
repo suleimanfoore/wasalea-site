@@ -97,5 +97,12 @@ export async function onRequestGet({ request, env, params }) {
     env.SESSION_SECRET
   );
 
-  return redirect(file.url, [setCookie(SESSION_COOKIE, session, SESSION_MAX_AGE), clearState]);
+  // Land on our own page rather than on the file. A redirect straight to the
+  // installer downloads it without navigating, which leaves the visitor
+  // looking at whichever page the provider last rendered - stranded on
+  // accounts.google.com with their file and no way back to us.
+  return redirect('/downloading?p=' + encodeURIComponent(platform), [
+    setCookie(SESSION_COOKIE, session, SESSION_MAX_AGE),
+    clearState
+  ]);
 }
