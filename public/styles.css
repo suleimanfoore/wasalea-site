@@ -460,3 +460,18 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .provider:hover { border-color: var(--accent); background: var(--accent-wash); }
 .provider svg { width: 18px; height: 18px; flex: none; }
+
+/* A two-sentence section heading needs more room than the 32ch default,
+   which would otherwise break it into a narrow column of five lines. */
+.section-title.wide { max-width: 46ch; }
+
+/* The closing statement of the support section: a stated belief rather than
+   another feature, so it reads as a line on its own. */
+.closer {
+  margin: 30px 0 0;
+  padding-left: 18px;
+  border-left: 3px solid var(--accent);
+  font-size: 1.06rem;
+  color: var(--ink);
+  max-width: 62ch;
+}
